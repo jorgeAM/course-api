@@ -42,7 +42,7 @@ module.exports = {
         birthday: '1999-12-31',
         email: 'teacher@trilce.com',
         password: bcrypt.hashSync('123456', 10),
-        role: 'super-admin',
+        role: 'teacher',
         school: 'trilce-trujillo'
       },
       {
@@ -52,7 +52,7 @@ module.exports = {
         birthday: '1999-12-31',
         email: 'teacher@flemming.com',
         password: bcrypt.hashSync('123456', 10),
-        role: 'super-admin',
+        role: 'teacher',
         school: 'flemming'
       }
     ]

@@ -1,5 +1,10 @@
 import express from 'express'
-import { allGrades, createGrade, getGrade } from '../controllers/grades'
+import {
+  allGrades,
+  createGrade,
+  getGrade,
+  deleteGrade
+} from '../controllers/grades'
 import {
   adminMiddleware,
   superAdminMiddleware,
@@ -37,6 +42,12 @@ router.get(
   authenticateMiddleware,
   superAdminMiddleware,
   getGrade
+)
+router.delete(
+  '/:id/grades/:gradeId',
+  authenticateMiddleware,
+  superAdminMiddleware,
+  deleteGrade
 )
 
 export default router
