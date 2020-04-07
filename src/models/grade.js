@@ -1,3 +1,5 @@
+import SequelizeSlugify from 'sequelize-slugify'
+
 const Grade = (sequelize, Sequelize) => {
   const model = sequelize.define('Grade', {
     id: {
@@ -11,7 +13,7 @@ const Grade = (sequelize, Sequelize) => {
     },
     slug: {
       type: Sequelize.STRING,
-      allowNull: false
+      unique: true
     }
   })
 
@@ -20,6 +22,10 @@ const Grade = (sequelize, Sequelize) => {
 
     model.hasMany(models.Course)
   }
+
+  SequelizeSlugify.slugifyModel(model, {
+    source: ['name']
+  })
 
   return model
 }

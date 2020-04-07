@@ -29,11 +29,11 @@ router.post('/', async (req, res) => {
 
     await transaction.commit()
 
-    res.status(201).json({ school })
+    return res.status(201).json({ school })
   } catch (error) {
     await transaction.rollback()
 
-    res.status(500).json({
+    return res.status(500).json({
       message: 'No pudimos crear el colegio',
       error: error.message
     })
