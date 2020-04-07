@@ -1,5 +1,5 @@
 import express from 'express'
-import { createWeek, allWeeks, getWeek } from '../controllers/weeks'
+import { createWeek, allWeeks, getWeek, updateWeek } from '../controllers/weeks'
 import { allTabs, createTab } from '../controllers/tabs'
 import { allAttributes, createAttributes } from '../controllers/attributes'
 import {
@@ -28,17 +28,23 @@ router.get(
   availableCourseMiddleware,
   allWeeks
 )
+router.post(
+  '/:id/weeks',
+  authenticateMiddleware,
+  availableCourseMiddleware,
+  createWeek
+)
 router.get(
   '/:id/weeks/:weekId',
   authenticateMiddleware,
   availableCourseMiddleware,
   getWeek
 )
-router.post(
-  '/:id/weeks',
+router.put(
+  '/:id/weeks/:weekId',
   authenticateMiddleware,
   availableCourseMiddleware,
-  createWeek
+  updateWeek
 )
 router.get(
   '/:id/weeks/:weekId/tabs',
