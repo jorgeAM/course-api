@@ -13,7 +13,11 @@ import {
   deleteTab,
   updateTab
 } from '../controllers/tabs'
-import { allAttributes, createAttributes } from '../controllers/attributes'
+import {
+  allAttributes,
+  createAttributes,
+  getAttribute
+} from '../controllers/attributes'
 import {
   allCourses,
   createCourse,
@@ -108,6 +112,12 @@ router.post(
   authenticateMiddleware,
   availableCourseMiddleware,
   createAttributes
+)
+router.get(
+  '/:id/weeks/:weekId/tabs/:tabId/attributes/:attributeId',
+  authenticateMiddleware,
+  availableCourseMiddleware,
+  getAttribute
 )
 
 export default router
