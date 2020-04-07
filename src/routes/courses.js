@@ -6,7 +6,7 @@ import {
   updateWeek,
   deleteWeek
 } from '../controllers/weeks'
-import { allTabs, createTab } from '../controllers/tabs'
+import { allTabs, createTab, getTab } from '../controllers/tabs'
 import { allAttributes, createAttributes } from '../controllers/attributes'
 import {
   allCourses,
@@ -28,6 +28,7 @@ router.get('/:id', authenticateMiddleware, adminMiddleware, getCourse)
 router.post('/', authenticateMiddleware, adminMiddleware, createCourse)
 router.put('/:id', authenticateMiddleware, adminMiddleware, updateCourse)
 router.delete('/:id', authenticateMiddleware, adminMiddleware, deleteCourse)
+
 router.get(
   '/:id/weeks',
   authenticateMiddleware,
@@ -58,6 +59,7 @@ router.delete(
   availableCourseMiddleware,
   deleteWeek
 )
+
 router.get(
   '/:id/weeks/:weekId/tabs',
   authenticateMiddleware,
@@ -69,6 +71,12 @@ router.post(
   authenticateMiddleware,
   availableCourseMiddleware,
   createTab
+)
+router.get(
+  '/:id/weeks/:weekId/tabs/:tabId',
+  authenticateMiddleware,
+  availableCourseMiddleware,
+  getTab
 )
 
 router.get(
