@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Roles', {
+    return queryInterface.createTable('Grades', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -23,11 +23,21 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false
+      },
+      SchoolId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Schools',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       }
     })
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('Roles')
+    return queryInterface.dropTable('Grades')
   }
 }

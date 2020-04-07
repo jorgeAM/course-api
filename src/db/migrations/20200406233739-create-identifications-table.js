@@ -2,18 +2,27 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Roles', {
+    return queryInterface.createTable('Identifications', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      name: {
+      type: {
+        type: Sequelize.ENUM,
+        values: ['dni', 'pasaporte', 'carnet-extranjeria', 'ruc']
+      },
+      value: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
+      },
+      identificableType: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      slug: {
-        type: Sequelize.STRING,
+      identificableId: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       createdAt: {
@@ -28,6 +37,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('Roles')
+    return queryInterface.dropTable('Identifications')
   }
 }

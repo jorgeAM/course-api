@@ -2,17 +2,13 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Roles', {
+    return queryInterface.createTable('Tabs', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
       name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      slug: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -23,11 +19,21 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false
+      },
+      WeekId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Weeks',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       }
     })
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('Roles')
+    return queryInterface.dropTable('Tabs')
   }
 }
