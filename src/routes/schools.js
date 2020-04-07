@@ -3,7 +3,8 @@ import {
   allGrades,
   createGrade,
   getGrade,
-  deleteGrade
+  deleteGrade,
+  updateGrade
 } from '../controllers/grades'
 import {
   adminMiddleware,
@@ -42,6 +43,12 @@ router.get(
   authenticateMiddleware,
   superAdminMiddleware,
   getGrade
+)
+router.put(
+  '/:id/grades/:gradeId',
+  authenticateMiddleware,
+  superAdminMiddleware,
+  updateGrade
 )
 router.delete(
   '/:id/grades/:gradeId',
