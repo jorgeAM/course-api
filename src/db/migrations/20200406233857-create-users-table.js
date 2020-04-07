@@ -54,6 +54,16 @@ module.exports = {
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
+      },
+      SchoolId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Schools',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       }
     })
   },
