@@ -3,6 +3,7 @@ import moment from 'moment'
 import express from 'express'
 import { models } from '../../models'
 import { roles } from '../../utils/constants'
+import generateJWT from '../../utils/generate-jwt'
 
 const router = express.Router()
 
@@ -62,7 +63,10 @@ router.post('/sign-up', async (req, res) => {
     payload.birthday = moment(birthday).toDate()
 
     const newUser = await models.User.create(payload)
-    res.status(201).json({ user: newUser })
+    res.status(201).json({
+      user: newUser,
+      token: generateJWT(newUser)
+    })
   } catch (error) {
     res.status(500).json({
       message: 'No pudimos crear tu cuenta, intentalo otra vez',
