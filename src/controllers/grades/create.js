@@ -1,14 +1,12 @@
-import express from 'express'
 import { models } from '../../models'
 
-const router = express.Router()
-
-router.post('/', async (req, res) => {
-  const { name, schoolId } = req.body
+const create = async (req, res) => {
+  const { id } = req.params
+  const { name } = req.body
 
   const payload = {
     name,
-    SchoolId: schoolId
+    SchoolId: id
   }
 
   try {
@@ -21,6 +19,6 @@ router.post('/', async (req, res) => {
       error: error.message
     })
   }
-})
+}
 
-export default router
+export default create

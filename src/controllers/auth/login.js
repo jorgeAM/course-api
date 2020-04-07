@@ -1,11 +1,8 @@
 import bcrypt from 'bcrypt'
-import express from 'express'
 import { models } from '../../models'
-import generateJWT from '../../utils/generate-jwt'
+import { generateJWT } from '../../utils'
 
-const router = express.Router()
-
-router.post('/login', async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body
 
   const userQuery = {
@@ -33,6 +30,6 @@ router.post('/login', async (req, res) => {
     user,
     token
   })
-})
+}
 
-export default router
+export default login

@@ -1,4 +1,3 @@
-import { models } from '../models'
 import { roles } from '../utils/constants'
 
 const adminMiddleware = async (req, res, next) => {

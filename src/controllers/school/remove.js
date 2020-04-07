@@ -1,9 +1,6 @@
-import express from 'express'
 import { models } from '../../models'
 
-const router = express.Router()
-
-router.delete('/:id', async (req, res) => {
+const remove = async (req, res) => {
   const { id } = req.params
   const school = await models.School.findByPk(id)
 
@@ -13,7 +10,9 @@ router.delete('/:id', async (req, res) => {
 
   await school.destroy()
 
-  res.status(200).json({ message: `El colegio ${school.name} fue eliminado` })
-})
+  return res.status(200).json({
+    message: `El colegio ${school.name} fue eliminado`
+  })
+}
 
-export default router
+export default remove

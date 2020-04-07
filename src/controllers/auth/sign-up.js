@@ -1,13 +1,9 @@
 import bcrypt from 'bcrypt'
 import moment from 'moment'
-import express from 'express'
 import { models } from '../../models'
-import { roles } from '../../utils/constants'
-import generateJWT from '../../utils/generate-jwt'
+import { generateJWT, roles } from '../../utils'
 
-const router = express.Router()
-
-router.post('/sign-up', async (req, res) => {
+const signUp = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -76,6 +72,6 @@ router.post('/sign-up', async (req, res) => {
       error: error.message
     })
   }
-})
+}
 
-export default router
+export default signUp

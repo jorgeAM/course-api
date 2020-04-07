@@ -1,9 +1,6 @@
-import express from 'express'
 import { models, sequelize } from '../../models'
 
-const router = express.Router()
-
-router.post('/', async (req, res) => {
+const create = async (req, res) => {
   try {
     const {
       name,
@@ -38,6 +35,6 @@ router.post('/', async (req, res) => {
       error: error.message
     })
   }
-})
+}
 
-export default router
+export default create
