@@ -29,7 +29,7 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
-      Tabs: {
+      TabId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
