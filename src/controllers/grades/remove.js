@@ -1,6 +1,6 @@
 import { models } from '../../models'
 
-const get = async (req, res) => {
+const remove = async (req, res) => {
   const { id, gradeId } = req.params
 
   const query = {
@@ -21,4 +21,4 @@ const get = async (req, res) => {
   return res.json({ message: `El grado ${grade.name} fue eliminado` })
 }
 
-export default get
+export default remove

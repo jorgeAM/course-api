@@ -2,7 +2,12 @@ import express from 'express'
 import { createWeek, allWeeks } from '../controllers/weeks'
 import { allTabs, createTab } from '../controllers/tabs'
 import { allAttributes, createAttributes } from '../controllers/attributes'
-import { allCourses, createCourse, getCourse } from '../controllers/courses'
+import {
+  allCourses,
+  createCourse,
+  getCourse,
+  deleteCourse
+} from '../controllers/courses'
 import {
   adminMiddleware,
   authenticateMiddleware,
@@ -14,6 +19,7 @@ const router = express.Router()
 router.get('/', authenticateMiddleware, adminMiddleware, allCourses)
 router.get('/:id', authenticateMiddleware, adminMiddleware, getCourse)
 router.post('/', authenticateMiddleware, adminMiddleware, createCourse)
+router.delete('/:id', authenticateMiddleware, adminMiddleware, deleteCourse)
 router.get(
   '/:id/weeks',
   authenticateMiddleware,
