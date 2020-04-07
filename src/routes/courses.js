@@ -16,7 +16,8 @@ import {
 import {
   allAttributes,
   createAttributes,
-  getAttribute
+  getAttribute,
+  deleteAttribute
 } from '../controllers/attributes'
 import {
   allCourses,
@@ -118,6 +119,12 @@ router.get(
   authenticateMiddleware,
   availableCourseMiddleware,
   getAttribute
+)
+router.delete(
+  '/:id/weeks/:weekId/tabs/:tabId/attributes/:attributeId',
+  authenticateMiddleware,
+  availableCourseMiddleware,
+  deleteAttribute
 )
 
 export default router
