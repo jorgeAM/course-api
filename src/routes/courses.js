@@ -6,7 +6,7 @@ import {
   updateWeek,
   deleteWeek
 } from '../controllers/weeks'
-import { allTabs, createTab, getTab } from '../controllers/tabs'
+import { allTabs, createTab, getTab, deleteTab } from '../controllers/tabs'
 import { allAttributes, createAttributes } from '../controllers/attributes'
 import {
   allCourses,
@@ -77,6 +77,12 @@ router.get(
   authenticateMiddleware,
   availableCourseMiddleware,
   getTab
+)
+router.delete(
+  '/:id/weeks/:weekId/tabs/:tabId',
+  authenticateMiddleware,
+  availableCourseMiddleware,
+  deleteTab
 )
 
 router.get(
