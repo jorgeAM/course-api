@@ -34,8 +34,7 @@ module.exports = {
         allowNull: false
       },
       lastConnection: {
-        type: Sequelize.DATE,
-        allowNull: false
+        type: Sequelize.DATE
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -57,7 +56,6 @@ module.exports = {
       },
       SchoolId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Schools',
           key: 'id'
