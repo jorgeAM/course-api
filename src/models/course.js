@@ -1,3 +1,5 @@
+import SequelizeSlugify from 'sequelize-slugify'
+
 const Course = (sequelize, Sequelize) => {
   const model = sequelize.define('Course', {
     id: {
@@ -34,6 +36,10 @@ const Course = (sequelize, Sequelize) => {
 
     model.hasMany(models.Week)
   }
+
+  SequelizeSlugify.slugifyModel(model, {
+    source: ['name']
+  })
 
   return model
 }
