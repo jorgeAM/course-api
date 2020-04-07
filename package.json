@@ -7,6 +7,7 @@
     "build": "babel src --out-dir .dist",
     "start": "node .dist",
     "dev": "nodemon -r dotenv/config --exec babel-node src",
+    "db:prepare": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Me",
