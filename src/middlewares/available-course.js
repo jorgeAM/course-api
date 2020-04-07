@@ -1,8 +1,14 @@
 import { models } from '../models'
+import { roles } from '../utils'
 
 const availableCourseMiddleware = async (req, res, next) => {
   if (!req.user) {
     return res.status(401).json({ message: 'Debes iniciar sesión' })
+  }
+
+  if (req.user.role == roles.SUPER_ADMIN) {
+    next()
+    return
   }
 
   const { id } = req.params
