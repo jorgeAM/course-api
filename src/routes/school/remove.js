@@ -1,12 +1,7 @@
 import express from 'express'
 import { models } from '../../models'
-import authenticateMiddleware from '../../middlewares/authenticate'
-import superAdminMiddleware from '../../middlewares/super-admin'
 
 const router = express.Router()
-
-router.use(authenticateMiddleware)
-router.use(superAdminMiddleware)
 
 router.delete('/:id', async (req, res) => {
   const { id } = req.params

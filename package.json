@@ -19,7 +19,8 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "mysql2": "^2.1.0",
-    "sequelize": "^5.21.6"
+    "sequelize": "^5.21.6",
+    "sequelize-slugify": "^0.9.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

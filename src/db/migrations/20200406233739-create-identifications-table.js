@@ -14,8 +14,7 @@ module.exports = {
       },
       value: {
         type: Sequelize.STRING,
-        unique: true,
-        allowNull: false
+        unique: true
       },
       identificableType: {
         type: Sequelize.STRING,
