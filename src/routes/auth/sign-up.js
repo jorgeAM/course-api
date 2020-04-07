@@ -63,9 +63,12 @@ router.post('/sign-up', async (req, res) => {
     payload.birthday = moment(birthday).toDate()
 
     const newUser = await models.User.create(payload)
+
+    const token = await generateJWT(newUser)
+
     res.status(201).json({
       user: newUser,
-      token: generateJWT(newUser)
+      token
     })
   } catch (error) {
     res.status(500).json({

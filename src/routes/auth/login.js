@@ -11,7 +11,8 @@ router.post('/login', async (req, res) => {
   const userQuery = {
     where: {
       email
-    }
+    },
+    include: [models.Role]
   }
 
   const user = await models.User.findOne(userQuery)
@@ -26,9 +27,11 @@ router.post('/login', async (req, res) => {
     return res.status(400).json({ message: 'Las contraseña es incorrecta' })
   }
 
+  const token = await generateJWT(user)
+
   res.status(200).json({
     user,
-    token: generateJWT(user)
+    token
   })
 })
 

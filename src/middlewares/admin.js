@@ -6,13 +6,7 @@ const adminMiddleware = async (req, res, next) => {
     return res.status(401).json({ message: 'Debes iniciar sesión' })
   }
 
-  const role = await models.Role.findByPk(req.user.RoleId)
-
-  if (!role) {
-    return res.status(401).json({ message: 'No tienes un rol válido' })
-  }
-
-  if (role.slug != roles.ADMIN) {
+  if (req.user.role != roles.ADMIN) {
     return res.status(401).json({ message: 'No tienes un rol válido' })
   }
 
