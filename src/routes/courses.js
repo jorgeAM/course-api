@@ -1,5 +1,11 @@
 import express from 'express'
-import { createWeek, allWeeks, getWeek, updateWeek } from '../controllers/weeks'
+import {
+  createWeek,
+  allWeeks,
+  getWeek,
+  updateWeek,
+  deleteWeek
+} from '../controllers/weeks'
 import { allTabs, createTab } from '../controllers/tabs'
 import { allAttributes, createAttributes } from '../controllers/attributes'
 import {
@@ -45,6 +51,12 @@ router.put(
   authenticateMiddleware,
   availableCourseMiddleware,
   updateWeek
+)
+router.delete(
+  '/:id/weeks/:weekId',
+  authenticateMiddleware,
+  availableCourseMiddleware,
+  deleteWeek
 )
 router.get(
   '/:id/weeks/:weekId/tabs',
