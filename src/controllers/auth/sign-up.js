@@ -51,7 +51,8 @@ const signUp = async (req, res) => {
     lastName,
     gender,
     email,
-    RoleId: role.id
+    RoleId: role.id,
+    SchoolId: req.school.id
   }
 
   try {
@@ -62,11 +63,12 @@ const signUp = async (req, res) => {
 
     const token = await generateJWT(newUser)
 
-    res.status(201).json({
+    return res.status(201).json({
       user: newUser,
       token
     })
   } catch (error) {
+    console.log(error)
     res.status(500).json({
       message: 'No pudimos crear tu cuenta, intentalo otra vez',
       error: error.message

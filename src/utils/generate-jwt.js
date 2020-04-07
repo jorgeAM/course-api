@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken'
 const KEY = process.env.JWT_SECRET
 
 const generateJWT = async user => {
+  const role = user.Role || (await user.getRole())
+
   const data = {
     id: user.id,
     firstName: user.firstName,
@@ -10,8 +12,8 @@ const generateJWT = async user => {
     gender: user.gender,
     email: user.email,
     RoleId: user.RoleId,
-    SchoolId: user.SchoolId,
-    role: user.Role.slug || (await user.getRole()).slug
+    role: role.slug,
+    SchoolId: user.SchoolId
   }
 
   return jwt.sign(data, KEY, { expiresIn: '8h' })
