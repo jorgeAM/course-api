@@ -9,12 +9,14 @@ import {
   allSchools,
   createSchool,
   deleteSchool,
+  getSchool,
   getTeacher
 } from '../controllers/schools'
 
 const router = express.Router()
 
 router.get('/', authenticateMiddleware, superAdminMiddleware, allSchools)
+router.get('/:id', authenticateMiddleware, getSchool)
 router.post('/', authenticateMiddleware, superAdminMiddleware, createSchool)
 router.delete('/', authenticateMiddleware, superAdminMiddleware, deleteSchool)
 router.get('/:id/teachers', authenticateMiddleware, adminMiddleware, getTeacher)

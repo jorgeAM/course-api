@@ -26,7 +26,7 @@ const School = (sequelize, Sequelize) => {
       foreignKey: 'identificableId',
       constraints: false,
       scope: {
-        imageableType: 'school'
+        identificableType: 'school'
       }
     })
 
