@@ -13,7 +13,15 @@ const create = async (req, res) => {
   }
 
   const errors = []
-  const grade = await models.Grade.findByPk(gradeId)
+
+  const gradeQuery = {
+    where: {
+      id: gradeId,
+      SchoolId
+    }
+  }
+
+  const grade = await models.Grade.findOne(gradeQuery)
 
   if (!grade) {
     errors.push({
@@ -22,7 +30,14 @@ const create = async (req, res) => {
     })
   }
 
-  const teacher = await models.User.findByPk(teacherId)
+  const teacherQuery = {
+    where: {
+      id: teacherId,
+      SchoolId
+    }
+  }
+
+  const teacher = await models.User.findOne(teacherQuery)
 
   if (!teacher) {
     errors.push({
