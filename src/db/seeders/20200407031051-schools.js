@@ -4,16 +4,12 @@ module.exports = {
   up: queryInterface => {
     const data = [
       {
-        name: 'Profesor',
-        slug: 'teacher'
+        name: 'Trilce Trujillo',
+        slug: 'trilce-trujillo'
       },
       {
-        name: 'Administrador',
-        slug: 'admin'
-      },
-      {
-        name: 'Super Admin',
-        slug: 'super-admin'
+        name: 'Flemming',
+        slug: 'flemming'
       }
     ]
 
@@ -25,10 +21,10 @@ module.exports = {
 
     const payload = data.map(normalizeItem)
 
-    return queryInterface.bulkInsert('Roles', payload)
+    return queryInterface.bulkInsert('Schools', payload)
   },
 
   down: queryInterface => {
-    return queryInterface.bulkDelete('Roles', null, {})
+    return queryInterface.bulkDelete('Schools', null, {})
   }
 }
