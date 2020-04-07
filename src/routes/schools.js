@@ -1,5 +1,5 @@
 import express from 'express'
-import { allGrades, createGrade } from '../controllers/grades'
+import { allGrades, createGrade, getGrade } from '../controllers/grades'
 import {
   adminMiddleware,
   superAdminMiddleware,
@@ -31,6 +31,12 @@ router.post(
   authenticateMiddleware,
   superAdminMiddleware,
   createGrade
+)
+router.get(
+  '/:id/grades/:gradeId',
+  authenticateMiddleware,
+  superAdminMiddleware,
+  getGrade
 )
 
 export default router

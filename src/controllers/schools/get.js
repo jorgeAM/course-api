@@ -1,7 +1,6 @@
 import { models } from '../../models'
 
 const get = async (req, res) => {
-  console.log('GG')
   const { id } = req.params
 
   const query = {
