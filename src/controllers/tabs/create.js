@@ -1,21 +1,21 @@
 import { models } from '../../models'
 
 const create = async (req, res) => {
-  const { id } = req.params
+  const { weekId } = req.params
   const { name } = req.body
 
   const payload = {
     name,
-    SchoolId: id
+    WeekId: weekId
   }
 
   try {
-    const grade = await models.Grade.create(payload)
+    const tab = await models.Tab.create(payload)
 
-    return res.status(201).json({ grade })
+    return res.status(201).json({ tab })
   } catch (error) {
     return res.status(500).json({
-      message: 'No pudimos crear el grado',
+      message: 'No pudimos crear el Tab',
       error: error.message
     })
   }
