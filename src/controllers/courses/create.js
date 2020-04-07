@@ -1,35 +1,41 @@
-import express from 'express'
 import { models } from '../../models'
 
-const router = express.Router()
-
-router.post('/', async (req, res) => {
-  const { name, description, schoolId, gradeId, teacherId } = req.body
+const create = async (req, res) => {
+  const { SchoolId } = req.user
+  const { name, description, gradeId, teacherId } = req.body
 
   const payload = {
     name,
     description,
+    SchoolId,
     GradeId: gradeId,
-    SchoolId: schoolId,
     TeacherId: teacherId
   }
 
-  const school = await models.School.findByPk(schoolId)
-
-  if (!school) {
-    return res.status(400).json({ message: 'El colegio elegido no existe' })
-  }
-
+  const errors = []
   const grade = await models.Grade.findByPk(gradeId)
 
   if (!grade) {
-    return res.status(400).json({ message: 'El grado elegido no existe' })
+    errors.push({
+      key: 'grade',
+      message: 'El grado elegido no existe'
+    })
   }
 
   const teacher = await models.User.findByPk(teacherId)
 
   if (!teacher) {
-    return res.status(400).json({ message: 'El docente elegido no existe' })
+    errors.push({
+      key: 'teacher',
+      message: 'El docente elegido no existe'
+    })
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).json({
+      message: 'No pudimos crear el curso',
+      errors
+    })
   }
 
   try {
@@ -42,6 +48,6 @@ router.post('/', async (req, res) => {
       error: error.message
     })
   }
-})
+}
 
-export default router
+export default create

@@ -10,6 +10,7 @@ const generateJWT = async user => {
     gender: user.gender,
     email: user.email,
     RoleId: user.RoleId,
+    SchoolId: user.SchoolId,
     role: user.Role.slug || (await user.getRole()).slug
   }
 

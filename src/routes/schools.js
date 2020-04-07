@@ -1,7 +1,7 @@
 import express from 'express'
 import { allGrades, createGrade } from '../controllers/grades'
 import { superAdminMiddleware, authenticateMiddleware } from '../middlewares'
-import { allSchools, createSchool, DeleteSchool } from '../controllers/school'
+import { allSchools, createSchool, DeleteSchool } from '../controllers/schools'
 
 const router = express.Router()
 
