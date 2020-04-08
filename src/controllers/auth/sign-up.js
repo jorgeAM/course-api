@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import moment from 'moment'
-import { models } from '../../models'
+import { models, sequelize } from '../../models'
 import { generateJWT, roles } from '../../utils'
 
 const signUp = async (req, res) => {
@@ -11,7 +11,8 @@ const signUp = async (req, res) => {
     birthday,
     email,
     password,
-    confirmPassword
+    confirmPassword,
+    identification
   } = req.body
 
   const userQuery = {
@@ -54,12 +55,26 @@ const signUp = async (req, res) => {
     RoleId: role.id,
     SchoolId: req.school.id
   }
+  payload.password = bcrypt.hashSync(password, 10)
+  payload.birthday = moment(birthday).toDate()
+
+  const transaction = await sequelize.transaction()
 
   try {
-    payload.password = bcrypt.hashSync(password, 10)
-    payload.birthday = moment(birthday).toDate()
+    const newUser = await models.User.create(payload, { transaction })
 
-    const newUser = await models.User.create(payload)
+    const { type, value } = identification
+
+    const idPayload = {
+      type,
+      value,
+      identificableType: 'user',
+      identificableId: newUser.id
+    }
+
+    await models.Identification.create(idPayload, { transaction })
+
+    await transaction.commit()
 
     const token = await generateJWT(newUser)
 
@@ -68,7 +83,8 @@ const signUp = async (req, res) => {
       token
     })
   } catch (error) {
-    console.log(error)
+    await transaction.rollback()
+
     res.status(500).json({
       message: 'No pudimos crear tu cuenta, intentalo otra vez',
       error: error.message

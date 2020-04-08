@@ -1,18 +1,18 @@
 import { models, sequelize } from '../../models'
 
 const create = async (req, res) => {
+  const {
+    name,
+    identification: { type, value }
+  } = req.body
+
+  const schoolPayload = {
+    name
+  }
+
+  const transaction = await sequelize.transaction()
+
   try {
-    const {
-      name,
-      identification: { type, value }
-    } = req.body
-
-    const schoolPayload = {
-      name
-    }
-
-    const transaction = await sequelize.transaction()
-
     const school = await models.School.create(schoolPayload, { transaction })
 
     const idPayload = {
