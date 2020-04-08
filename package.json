@@ -20,9 +20,11 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "multer": "^1.4.2",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.6",
-    "sequelize-slugify": "^0.9.1"
+    "sequelize-slugify": "^0.9.1",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
