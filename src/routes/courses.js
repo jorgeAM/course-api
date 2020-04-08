@@ -24,13 +24,15 @@ import {
   createCourse,
   getCourse,
   deleteCourse,
-  updateCourse
+  updateCourse,
+  uploadBanner
 } from '../controllers/courses'
 import {
   adminMiddleware,
   authenticateMiddleware,
   availableCourseMiddleware
 } from '../middlewares'
+import { multerConfig } from '../utils'
 
 const router = express.Router()
 
@@ -39,6 +41,13 @@ router.get('/:id', authenticateMiddleware, adminMiddleware, getCourse)
 router.post('/', authenticateMiddleware, adminMiddleware, createCourse)
 router.put('/:id', authenticateMiddleware, adminMiddleware, updateCourse)
 router.delete('/:id', authenticateMiddleware, adminMiddleware, deleteCourse)
+router.post(
+  '/:id/upload-banner',
+  authenticateMiddleware,
+  adminMiddleware,
+  multerConfig.single('banner'),
+  uploadBanner
+)
 
 router.get(
   '/:id/weeks',
